@@ -17,5 +17,7 @@ public struct Method {
   public let parameters : [ParamDecl]
   public let name : String
   public let initializer : Bool
+  public let statements : [String]
 }
+
 

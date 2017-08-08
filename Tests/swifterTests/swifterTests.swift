@@ -211,5 +211,20 @@ class swifterTests: XCTestCase {
       XCTAssertEqual($0, 
        "func fooMethod(flt_p : Float, int_p : Int, dbl_p : Double, str_p : String) -> Int {\n  \n}\n")
     } 
-  } 
+  }
+
+  func testMethodStatementsdEmitter() {
+    let path = URL(fileURLWithPath: "method.stmts.test.out")
+    let method = Method.builder()
+     .setReturnType(Int.self)
+     .setName("fooMethod")
+     .addStatement("let a : Int = 5")
+     .addStatement("let b : Int = 1")
+     .addStatement("print(a + b)")
+     .build()
+
+    startEmitterTest(path: path, renderable: method) {
+      XCTAssertEqual($0, "func fooMethod() -> Int {\n  let a : Int = 5\n  let b : Int = 1\n  print(a + b)\n}\n")
+    } 
+  }
 }

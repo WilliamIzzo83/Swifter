@@ -5,6 +5,7 @@ public class MethodBuilder : Builder {
   private var parameters = [ParamDecl]()
   private var name : String!
   private var initializer = false
+  private var statements : [String] = []
 
   public func setReturnType(_ type:Any.Type) -> MethodBuilder {
     returnType = Type.builder().setType(type).build()
@@ -26,11 +27,17 @@ public class MethodBuilder : Builder {
     return self
   }
 
+  public func addStatement(_ stmt:String) -> MethodBuilder {
+    statements.append(stmt)
+    return self
+  }
+
   public func build() -> BuiltType {
     return Method(returnType:returnType, 
                   parameters:parameters,
                   name:name, 
-                  initializer:initializer)
+                  initializer:initializer,
+		  statements:statements)
   }
 }
 

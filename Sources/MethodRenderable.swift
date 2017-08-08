@@ -21,6 +21,31 @@ extension Method : CodeEmitterRenderable {
     return commands
   }
   
+  private func renderStatements() -> [CodeEmitterCommand] {
+    guard statements.count > 0 else {
+      return []
+    }
+
+    var commands = [CodeEmitterCommand]()
+    
+    guard statements.count > 1 else {
+      commands.append(.Emit(symbol: .Literal(string: statements.first!)))
+      return commands
+    }
+ 
+    let stmts_minus_last = statements.prefix(statements.count - 1)
+
+    for stmt in stmts_minus_last {
+      commands.append(.Emit(symbol: .Literal(string: stmt)))
+      commands.append(.Newline)
+    }
+
+    let last_stmt = statements.last!
+    commands.append(.Emit(symbol: .Literal(string: last_stmt)))
+
+    return commands
+  }
+
   public func render() -> [CodeEmitterCommand] {
     // func $name($parameters) -> $returnType
     var commands = [CodeEmitterCommand]()
@@ -39,7 +64,7 @@ extension Method : CodeEmitterRenderable {
     commands.append(.Emit(symbol: .ScopeOpen))
     commands.append(.PushIndentation)
     commands.append(.Newline)
-    // TODO: render other statements here
+    commands.append(contentsOf: renderStatements())
     commands.append(.PopIndentation)
     commands.append(.Newline)
     commands.append(.Emit(symbol: .ScopeClose))

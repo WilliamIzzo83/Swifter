@@ -121,7 +121,7 @@ class swifterTests: XCTestCase {
     let path = URL(fileURLWithPath: "emitter.test.out")
 
     let param_decl = ParamDecl.builder()
-      .setType(Type.builder().setType(Int.self).build())
+      .setType(Int.self)
       .setIdentifier("foo")
       .build()
 
@@ -133,7 +133,7 @@ class swifterTests: XCTestCase {
   func testStdZeroParamMethodEmitter() {
     let path = URL(fileURLWithPath: "method.0.test.out")
     let method = Method.builder()
-     .setReturnType(Type.builder().setType(Int.self).build())
+     .setReturnType(Int.self)
      .setName("fooMethod")
      .build()
 
@@ -145,11 +145,11 @@ class swifterTests: XCTestCase {
   func testStdOneParamMethodEmitter() {
     let path = URL(fileURLWithPath: "method.1.test.out")
     let method = Method.builder()
-     .setReturnType(Type.builder().setType(Int.self).build())
+     .setReturnType(Int.self)
      .setName("fooMethod")
      .setParameters([
        ParamDecl.builder()
-         .setType(Type.builder().setType(Float.self).build())
+         .setType(Float.self)
          .setIdentifier("flt_p")
          .build()
      ])
@@ -163,15 +163,15 @@ class swifterTests: XCTestCase {
   func testStdTwoParamMethodEmitter() {
     let path = URL(fileURLWithPath: "method.2.test.out")
     let method = Method.builder()
-     .setReturnType(Type.builder().setType(Int.self).build())
+     .setReturnType(Int.self)
      .setName("fooMethod")
      .setParameters([
        ParamDecl.builder()
-         .setType(Type.builder().setType(Float.self).build())
+         .setType(Float.self)
          .setIdentifier("flt_p")
          .build(),
        ParamDecl.builder()
-         .setType(Type.builder().setType(Int.self).build())
+         .setType(Int.self)
          .setIdentifier("int_p")
          .build()
      ])
@@ -185,23 +185,23 @@ class swifterTests: XCTestCase {
   func testStdNParamMethodEmitter() {
     let path = URL(fileURLWithPath: "method.n.test.out")
     let method = Method.builder()
-     .setReturnType(Type.builder().setType(Int.self).build())
+     .setReturnType(Int.self)
      .setName("fooMethod")
      .setParameters([
        ParamDecl.builder()
-         .setType(Type.builder().setType(Float.self).build())
+         .setType(Float.self)
          .setIdentifier("flt_p")
          .build(),
        ParamDecl.builder()
-         .setType(Type.builder().setType(Int.self).build())
+         .setType(Int.self)
          .setIdentifier("int_p")
          .build(),
        ParamDecl.builder()
-         .setType(Type.builder().setType(Double.self).build())
+         .setType(Double.self)
          .setIdentifier("dbl_p")
          .build(),
        ParamDecl.builder()
-         .setType(Type.builder().setType(String.self).build())
+         .setType(String.self)
          .setIdentifier("str_p")
          .build()
      ])

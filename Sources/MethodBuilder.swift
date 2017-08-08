@@ -6,8 +6,8 @@ public class MethodBuilder : Builder {
   private var name : String!
   private var initializer = false
 
-  public func setReturnType(_ type:Type) -> MethodBuilder {
-    returnType = type
+  public func setReturnType(_ type:Any.Type) -> MethodBuilder {
+    returnType = Type.builder().setType(type).build()
     return self
   }
 

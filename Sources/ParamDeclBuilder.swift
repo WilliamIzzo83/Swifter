@@ -8,8 +8,8 @@ public class ParamDeclBuilder : Builder {
     return self
   }
 
-  public func setType(_ type:Type) -> ParamDeclBuilder {
-    self.type = type
+  public func setType(_ type:Any.Type) -> ParamDeclBuilder {
+    self.type = Type.builder().setType(type).build()
     return self
   }
 

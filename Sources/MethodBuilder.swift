@@ -3,8 +3,7 @@ public class MethodBuilder : Builder {
   public typealias BuiltType = Method
   private var returnType = Type(type: Void.self)
   private var parameters = [ParamDecl]()
-  private var name : String!
-  private var initializer = false
+  private var name : String! 
   private var statements : [String] = []
 
   public func setReturnType(_ type:Any.Type) -> MethodBuilder {
@@ -22,11 +21,6 @@ public class MethodBuilder : Builder {
     return self
   }
 
-  public func setIsInitializer(_ isInitializer:Bool) -> MethodBuilder {
-    initializer = isInitializer
-    return self
-  }
-
   public func addStatement(_ stmt:String) -> MethodBuilder {
     statements.append(stmt)
     return self
@@ -36,7 +30,6 @@ public class MethodBuilder : Builder {
     return Method(returnType:returnType, 
                   parameters:parameters,
                   name:name, 
-                  initializer:initializer,
 		  statements:statements)
   }
 }

@@ -1,49 +1,10 @@
 extension Method : CodeEmitterRenderable {
   private func renderParams() -> [CodeEmitterCommand] {
-    guard parameters.count > 0 else {
-      return []
-    }
-
-    guard parameters.count > 1 else {
-      return parameters.first!.render()
-    }
-    
-    var commands = [CodeEmitterCommand]()
-    let params_minus_last = parameters.prefix(parameters.count - 1)
-    for param in params_minus_last {
-      commands.append(contentsOf: param.render())
-      commands.append(.Emit(symbol: .Comma))
-      commands.append(.Space)
-    }
-
-    commands.append(contentsOf: parameters.last!.render())
-
-    return commands
+    return ParamsListRenderable.renderParametersList(parameters)
   }
   
   private func renderStatements() -> [CodeEmitterCommand] {
-    guard statements.count > 0 else {
-      return []
-    }
-
-    var commands = [CodeEmitterCommand]()
-    
-    guard statements.count > 1 else {
-      commands.append(.Emit(symbol: .Literal(string: statements.first!)))
-      return commands
-    }
- 
-    let stmts_minus_last = statements.prefix(statements.count - 1)
-
-    for stmt in stmts_minus_last {
-      commands.append(.Emit(symbol: .Literal(string: stmt)))
-      commands.append(.Newline)
-    }
-
-    let last_stmt = statements.last!
-    commands.append(.Emit(symbol: .Literal(string: last_stmt)))
-
-    return commands
+    return StatementsRenderable.renderStatements(statements)
   }
 
   public func render() -> [CodeEmitterCommand] {
